@@ -1,0 +1,33 @@
+public class Solution {
+    public int maxSubarray(int A, int B, int[] C) {
+    
+           int[] prefixSum = new int[A + 1]; 
+        int maxSum = Integer.MIN_VALUE; 
+        int left = 0; 
+        int right = 0; 
+        int currentSum = 0; 
+        
+        // Calculate prefix sums
+        for (int i = 1; i <= A; i++) {
+            prefixSum[i] = prefixSum[i - 1] + C[i - 1];
+        }
+        
+        // Iterate through prefix sums with a sliding window
+        while (right <= A) {
+            // Check if current sum exceeds B
+            if (prefixSum[right] - prefixSum[left] > B) {
+                // Move left pointer to the right
+                left++;
+            } else {
+                // Update maxSum if current sum is greater
+                maxSum = Math.max(maxSum, prefixSum[right] - prefixSum[left]);
+                // Move right pointer to the right
+                right++;
+            }
+        }
+        
+        return maxSum;
+
+
+    }
+}
