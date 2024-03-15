@@ -8,9 +8,8 @@ Welcome to the Data Structures and Algorithms repository! This repository is ded
 - [Introduction](#introduction)
 - [Languages](#languages)
 - [Contributing](#contributing)
-- [Code Structure](#code-structure)
 - [Resources](#resources)
-- [License](#license)
+
 
 ## Introduction
 
