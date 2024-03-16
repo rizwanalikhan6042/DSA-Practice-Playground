@@ -1,0 +1,39 @@
+public class Solution {
+    public int solve(int[] A, int B) {
+      int n = A.length;
+
+int sum = 0;
+
+int minSum = Integer.MAX_VALUE;
+
+int minIndex = 0;
+
+// Calculate the sum of the first B elements
+
+for (int i = 0; i < B; i++) {
+
+sum += A[i];
+
+}
+
+minSum = sum; // Initialize minSum with the sum of the first B elements
+
+// Iterate through the array starting from index B
+
+for (int i = B; i < n; i++) {
+
+sum += A[i] - A[i - B]; // Update sum by adding the next element and 
+                        //subtracting the first element in the window
+if (sum < minSum) {
+
+minSum = sum; // Update minSum if a smaller sum is found
+
+minIndex = i - B + 1; // Update minIndex to the starting index of the current subarray
+
+}
+
+}
+
+return minIndex;
+    }
+}
