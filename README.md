@@ -38,6 +38,6 @@ Contributions to this repository are welcomed and encouraged! If you'd like to c
 6. Create a new Pull Request.
 
 Please ensure your code follows the repository's code style and includes appropriate comments and documentation.
-
+Build API:  Use slim framework Rate limiting Paywall the requests after certain limit Build SQL Database for our data Load test the API Host the API and database on Linode/Digital Ocean/Vultr Skills required: MySQL/MongoDB, Rest API, PHP
 
 
