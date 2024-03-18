@@ -1,1 +1,53 @@
 
+//Given two integer arrays, A and B of size N and M, respectively. Your task is to find all the common elements in both the array.
+public class Solution {
+    public int[] solve(int[] A, int[] B) {
+        // Create a HashMap to store the frequency of elements from array A
+        HashMap<Integer,Integer> h = new HashMap<>();
+        int n = A.length;  
+        int m = B.length;
+        int f = 0;
+        
+        // Count the frequency of elements in array A
+        for(int i = 0; i < n; i++) {
+            if(h.containsKey(A[i])) {
+                f = h.get(A[i]);
+                h.put(A[i], f + 1);
+            } else {
+                h.put(A[i], 1);
+            }
+        }
+        
+        int count = 0;
+        int j[] = new int[m];
+        
+        // Iterate through array B to find common elements
+        for(int i = 0; i < m; i++) {
+            if(h.containsKey(B[i])) {
+                f = h.get(B[i]);
+                h.put(B[i], f - 1);
+                
+                // If the frequency becomes zero, remove the element from the HashMap
+                if(f == 0) {
+                    h.remove(B[i]);
+                    continue;
+                }
+                // Add the common element to the result array
+                j[count] = B[i];
+                count++;
+            }
+        }
+        
+        // Prepare the final result array
+        int ans[] = new int[count];
+        int g = 0;
+        for(int i = 0; i < count; i++) {
+            if(j[i] != 0) {
+                ans[g] = j[i];
+                g++;
+            }
+        } 
+        return ans;
+    }
+}
+
