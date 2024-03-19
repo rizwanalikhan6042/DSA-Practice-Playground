@@ -1,0 +1,39 @@
+//Given an array of integers A, find and return whether the given array contains a non-empty subarray with a sum equal to 0.
+
+//If the given array contains a sub-array with sum zero return 1, else return 0.
+
+public class Solution {
+    public int solve(int[] A) {
+        
+        int n = A.length;
+        long[] pf = new long[n];
+        
+        // Calculate prefix sums
+        pf[0] = (long) A[0]; 
+        for (int i = 1; i < n; i++) {
+            pf[i] = pf[i - 1] + (long) A[i]; 
+        }
+        
+        
+        HashSet<Long> set = new HashSet<>();
+        
+        // Iterate through prefix sums
+        for (int i = 0; i < n; i++) {
+            // If current prefix sum is 0, return 1 (as it's a subarray with sum 0)
+            if (pf[i] == 0) {
+                return 1;
+            } else {
+                // If the prefix sum is already in the set, return 1
+                if (set.contains(pf[i])) {
+                    return 1;
+                } else {
+                    // Otherwise, add the prefix sum to the set
+                    set.add(pf[i]);
+                }
+            }
+        }
+        
+        
+        return 0;
+    }
+}
