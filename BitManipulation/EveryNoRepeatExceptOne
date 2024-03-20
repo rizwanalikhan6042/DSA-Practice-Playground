@@ -5,6 +5,38 @@
 
 -- Output Format
 -- Return a single integer denoting the single element.
+import java.util.*;
+
+public class Solution {
+    public int[] subarraySum(int[] A, int B) {
+        HashMap<Integer, Integer> prefixSumMap = new HashMap<>();
+        int sum = 0;
+        
+        for (int i = 0; i < A.length; i++) {
+            sum += A[i];
+            
+            // If sum equals B, the subarray from index 0 to i sums up to B.
+            if (sum == B) {
+                return Arrays.copyOfRange(A, 0, i + 1);
+            }
+            
+            // If the difference between sum and B exists in the prefix sum map,
+            // it means a subarray from prefixSumMap.get(sum - B) + 1 to i sums up to B.
+            if (prefixSumMap.containsKey(sum - B)) {
+                int startIdx = prefixSumMap.get(sum - B) + 1;
+                return Arrays.copyOfRange(A, startIdx, i + 1);
+            }
+            
+            // Store the current sum along with its index in the prefix sum map.
+            if (!prefixSumMap.containsKey(sum)) {
+                prefixSumMap.put(sum, i);
+            }
+        }
+        
+        // If no subarray sums up to B, return [-1].
+        return new int[] {-1};
+    }
+}
 
 public class UniqueNumberFinder {
     
