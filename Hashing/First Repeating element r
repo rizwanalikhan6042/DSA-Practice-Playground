@@ -1,0 +1,27 @@
+public class Solution {
+     
+    public int solve(int[] A) {
+       int n =A.length;
+       HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+       int f= 1;
+       for(int i=0;i<n;i++){
+           if(map.containsKey(A[i])){
+               f = map.get(A[i]);
+               map.put(A[i],f+1);  // You can think that we we can return repeating element
+                                   // from here but you are wrong see this example
+                                // [10 ,5 ,3 , 4 ,3 5, 6]
+           } else {             //If we return repeating element from here then answer would be three 
+                                //but the real answer is 5 because 5 index is smaller than 3
+               map.put(A[i],1);
+           }
+           
+       }
+
+for(int i = 0;i<n;i++){
+    if(map.get(A[i])>1){
+               return A[i];
+           }
+}
+return -1;
+    }
+}
