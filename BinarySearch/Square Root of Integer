@@ -1,0 +1,24 @@
+Given an integer A. Compute and return the square root of A.
+If A is not a perfect square, return floor(sqrt(A)).
+
+int l = 1;               // Initialize the lower bound of the search range to 1
+int h = A;               // Initialize the upper bound of the search range to the given number A
+long ans = 0;            // Initialize the variable to store the result
+
+// Perform binary search to find the square root
+while (l <= h) {         // Continue the loop until the lower bound is less than or equal to the upper bound
+    int mid = l + (h - l) / 2;     // Calculate the middle value of the range
+    long lonf = (long)mid * (long)mid;  // Calculate the square of the middle value (cast to long to avoid overflow)
+
+    if (lonf == A) {      // If the square of the middle value is equal to A, return the middle value
+        return mid;
+    } else if (lonf < A) {  // If the square of the middle value is less than A
+        ans = mid;          // Update the result with the current middle value
+        l = mid + 1;        // Update the lower bound to mid + 1 to search in the upper half
+    } else {                // If the square of the middle value is greater than A
+        h = mid - 1;        // Update the upper bound to mid - 1 to search in the lower half
+    }
+}
+
+return (int)ans;    // Return the integer part of the result
+
