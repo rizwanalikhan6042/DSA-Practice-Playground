@@ -1,0 +1,24 @@
+Given a sorted array of integers A where every element appears twice except for one element which appears once, 
+find and return this single element that appears only once.  O(log(N)) time.
+public class Solution {
+    public int solve(int[] A) {
+        int n = A.length;
+        int l = 0;
+        int r = n-1;
+        while(l<r){
+            int mid = l + (r-l)/2;
+            if(mid%2==1){
+                mid = mid-1;        // Adjust mid to be even
+            }
+           
+           if (A[mid] != A[mid + 1]) {  //It means element is on the left side
+                r = mid;
+            } else {
+                
+                l = mid + 2;      // It means element is on the left side
+            }
+
+        }
+return A[l];
+    }
+}
