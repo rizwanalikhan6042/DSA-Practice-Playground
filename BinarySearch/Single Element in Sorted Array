@@ -10,7 +10,9 @@ public class Solution {
             if(mid%2==1){
                 mid = mid-1;        // Adjust mid to be even
             }
-           
+           After the single element appear, on the even index 1st occurrence and in the odd index second occurrence will come and before the single element appear, 
+On the odd index first first occurrence and in the even index 2nd will come 
+Will use this 
            if (A[mid] != A[mid + 1]) {  //It means element is on the left side
                 r = mid;
             } else {
