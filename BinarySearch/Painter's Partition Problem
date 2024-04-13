@@ -1,0 +1,70 @@
+public class Solution {
+
+    // Method to check if it's possible to paint all boards within the given time limit
+    public boolean check(int A, int B , int []C ,int mid ){
+        int painters = 1; // Initialize the number of painters
+        int currentLength = 0; // Initialize the length of the current board being painted
+        
+        // Iterate through the boards
+        for (int i = 0; i < C.length; i++) {
+            // If the length of a single board exceeds the time limit, it's not possible to paint it
+            if (C[i] > mid) {
+                return false;
+            }
+            
+            // If adding the length of the current board exceeds the time limit,
+            // increment the number of painters and reset the length of the current board
+            if (currentLength + C[i] > mid) {
+                painters++;
+                currentLength = C[i];
+                
+                // If the number of painters exceeds the available painters, return false
+                if (painters > A) {
+                    return false;
+                }
+            } else {
+                // Otherwise, add the length of the current board to the current length
+                currentLength += C[i];
+            }
+        }
+        
+        // If all boards can be painted within the time limit with available painters, return true
+        return true;
+    }
+    
+    // Method to find the minimum time required to paint all boards
+    public int paint(int A, int B, int[] C) {
+        int n = C.length; // Number of boards
+        int max = 0; // Maximum length of a board
+        int sum = 0; // Total length of all boards
+        
+        // Iterate through the boards to find the maximum length and calculate the total length
+        for (int i = 0; i < n; i++) {
+            if (C[i] > max) {
+                max = C[i];
+            }
+            sum += C[i];
+        } 
+        
+        int low = max; // Lower bound for binary search
+        int high = sum; // Upper bound for binary search
+        int ans = Integer.MAX_VALUE; // Initialize the answer
+        
+        // Binary search loop to find the minimum time
+        while (low <= high) {
+            int mid = (low + high) / 2; // Calculate the middle time
+            
+            // If it's possible to paint all boards within the middle time, update the answer and search in the lower half
+            if (check(A, B, C, mid)) {
+                ans = mid;
+                high = mid - 1;
+            } else {
+                // Otherwise, search in the upper half
+                low = mid + 1;
+            }
+        }
+        
+        // Return the minimum time multiplied by the number of painters, modulo 10000003
+        return (int) ((ans * (long) B) % 10000003);
+    }
+}
