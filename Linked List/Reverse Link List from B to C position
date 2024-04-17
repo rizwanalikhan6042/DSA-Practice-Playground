@@ -1,0 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseBetween(ListNode A, int B, int C) {
+// If the input list is empty or B is equal to C, there is nothing to reverse, so return A
+       if (A == null || B == C) return A;
+
+ListNode dummy = new ListNode(0);
+dummy.next = A;
+ListNode NodeBeforeSublist = dummy;
+// Move NodeBeforeSublist to the node before the sublist to be reversed
+for (int i = 1; i < B; i++) {
+    NodeBeforeSublist = NodeBeforeSublist.next;
+}
+ // workingPointer points to the current node in the sublist being reversed
+ListNode workingPointer = NodeBeforeSublist.next;
+ListNode nodeToBeExtracted = null;
+// Reverse the sublist from B to C
+while(B<C) {
+    nodeToBeExtracted = workingPointer.next;
+   workingPointer.next = nodeToBeExtracted.next;
+   nodeToBeExtracted.next = NodeBeforeSublist.next;
+   NodeBeforeSublist.next = nodeToBeExtracted;
+   B++;
+}
+
+
+
+return dummy.next;
+
+    }
+}
