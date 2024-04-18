@@ -1,0 +1,41 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+   
+   public boolean isCycle(ListNode slow , ListNode fast){
+   
+     return false;
+   }
+     
+	public ListNode detectCycle(ListNode a ) {
+      
+      //ablove idea is about using hashSet which uses n space complxty 
+      //so this is next idea below
+     // this is by 2 pointer slow and fast pointer 
+      
+      ListNode slow = a;
+     ListNode fast = a;
+     while(fast!=null && fast.next!=null ){
+         slow = slow.next;
+         fast = fast.next.next;
+         if(slow==fast){
+             ListNode s1=a, s2=slow;
+       while(s1!=s2){
+           s1=s1.next;
+           s2 = s2.next;
+       }
+       ListNode t = s1;
+       return t;
+
+         }
+     }
+      return null;
+ 
+	}
+}
