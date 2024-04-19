@@ -1,0 +1,78 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+ 
+ 
+public class Solution {
+    public ListNode middle(ListNode h){
+      ListNode slow = h;
+      ListNode fast = h;
+      //middle
+      while(fast.next!=null&&fast.next.next!=null){
+          slow = slow.next;
+          fast = fast.next.next;
+      }
+      
+      ListNode middle = slow;
+      return middle;
+ }
+    public ListNode merge(ListNode t1,ListNode t2){
+      ListNode ans = null;
+      if (t1 == null) return t2;
+        if (t2 == null) return t1;
+
+      if(t1.val<=t2.val){
+           ans=t1;
+            t1=t1.next;
+      
+      } else{
+          ans=t2;
+            t2=t2.next;
+
+      }
+      ListNode anstrack = ans;
+      while(t1!=null&&t2!=null){
+          if(t1.val<=t2.val){
+          ListNode f = t1.next;
+          anstrack.next = t1;
+          anstrack=anstrack.next;
+          t1=t1.next;
+      }
+      else{
+           ListNode x = t2.next;
+          anstrack.next = t2;
+          anstrack=anstrack.next;
+          t2=t2.next;
+      }
+      }
+      while(t1!=null){
+          anstrack.next =t1;
+          t1=t1.next;
+          anstrack=anstrack.next;
+      }
+       while(t2!=null){
+          anstrack.next =t2;
+          t2=t2.next;
+          anstrack=anstrack.next;
+      }
+      return ans;
+ }
+    public ListNode sortList(ListNode A) {
+        if(A==null||A.next==null){
+            return A;
+        }
+        ListNode m = middle(A);
+        ListNode h=A;
+        ListNode h1=m.next;
+        m.next=null;
+        ListNode t1= sortList(h);
+        ListNode t2= sortList(h1);
+        ListNode t3 = merge(t1,t2);
+        return t3;
+    }
+}
