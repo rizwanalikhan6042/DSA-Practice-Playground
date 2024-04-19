@@ -1,0 +1,64 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseList(ListNode A) {
+       ListNode t =A;
+       ListNode rh=null;
+       if(A==null||A.next==null){
+           return A;
+       }
+      //if u r confused just see the bookmsrk rev linked list in lecture 
+       while (A!=null){
+        t=A;
+        A=A.next;
+        t.next=null;
+        t.next=rh;
+        rh=t;
+
+       }
+       return rh;
+    }
+    public int lPalin(ListNode A) {
+        if(A==null||A.next==null){
+            return 1;
+        }
+        if(A.next.next==null){
+            if(A.val==A.next.val){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        ListNode h = A;
+        //finding middle
+        ListNode s = A;
+        ListNode f =A;
+        while(f!=null&&f.next!=null){
+            s = s.next;
+            f=f.next.next;
+        }
+        ListNode mid = s;
+        ListNode sh = s.next;   //Separating both linked lists
+        mid.next=null;
+        //Reversing second linked list
+        ListNode secondln = reverseList(sh);
+        while(secondln!=null&&h!=null){
+            if(h.val==secondln.val){
+                h=h.next;
+                secondln=secondln.next;
+            }else{
+                return 0;
+            }
+        }
+        if(h.val==mid.val)       //For example like [1,8,4,1] 
+        return 1;                //It's necessary to check one last time
+        else          
+        return 0;
+    }
+}
