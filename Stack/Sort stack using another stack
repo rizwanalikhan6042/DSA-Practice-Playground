@@ -1,0 +1,36 @@
+public class Solution {
+    public int[] solve(int[] A) {
+        Stack <Integer> s = new Stack <>();
+        Stack <Integer> st = new Stack<>();
+        
+        int temp1 = 0;
+        int n = A.length;
+        int ans [] = new int[n];
+         
+       
+        for(int i=0;i<n;i++){
+          s.push(A[i]);
+        }
+       while(!s.empty()){
+           temp1 = s.pop();
+           while(!st.empty()&&st.peek()>temp1){
+               s.push(st.pop());
+           }
+           st.push(temp1);
+       }
+       // to bring Stack elements in incresing order in s 
+       while(!st.empty()){
+           s.push(st.peek());
+           st.pop();
+       }
+         int[] sortedArray = new int[A.length];
+         int i=0;
+        while (!s.empty()) {
+      ans[i] = s.peek();;
+      s.pop();
+      i++;
+    }
+      return ans;
+
+    }
+}
