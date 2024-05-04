@@ -1,0 +1,35 @@
+public class Solution {
+    public int[] prevSmaller(int[] A) {
+        int n=A.length;
+        int ans[]=new int[n];
+        for(int i=0;i<n;i++){
+            ans[i]=-1;
+        }
+        Stack <Integer> s = new Stack<>();
+        //we have submitted the solution with stack now without stack trying 
+    //     int temp = A[0];
+    //    for(int i=1;i<n;i++){
+    //     if(temp<=A[i]){
+    //         ans[i]=temp;
+    //     } else {
+    //         temp = A[i];
+    //     } [34,35,27,42,5,28,39,20,28]
+    //    } 
+    //    return ans;
+      s.push(A[0]);
+      for(int i=1;i<n;i++){
+          while(!s.empty()&&s.peek()>=A[i]){
+              s.pop();
+            //   
+          } if(!s.empty()&&s.peek()<A[i]){
+              ans[i]=s.peek();
+              s.push(A[i]);
+          }
+         if(s.empty()){
+             s.push(A[i]);     //if we directly give s.push here instead without(s.empty condition) then 
+                              //it will work bcz in both condition we have to push code 
+          }
+      }
+      return ans;
+    }
+}
