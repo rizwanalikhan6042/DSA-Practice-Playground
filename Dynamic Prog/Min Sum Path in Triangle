@@ -1,0 +1,16 @@
+public class Solution {
+	public int minimumTotal(ArrayList<ArrayList<Integer>> A) {
+        int m, n;
+        m = A.size();              //no of rows
+        n = A.get(m - 1).size();   //no of cols
+        int[] dp = new int[n + 1]; 
+        int size = n;
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = 0; j < A.get(i).size(); j++) {
+                dp[j] = Math.min(dp[j], dp[j + 1]) + A.get(i).get(j);
+            }
+            // this tracing of code is in video of help requests so plz see that
+        }
+        return dp[0];
+	}
+}
