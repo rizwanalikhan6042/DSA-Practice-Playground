@@ -1,0 +1,31 @@
+public class Solution {
+    public int findMinPath(int [][]A,int [][]dp,int i,int j){
+        if(i<0||j<0){
+            return Integer.MAX_VALUE;
+        }
+
+        if (i == 0 && j == 0) {
+            return A[i][j];
+        }
+        if(dp[i][j]==-1){
+            
+            dp[i][j]=A[i][j] + Math.min(findMinPath(A,dp,i-1,j),
+            findMinPath(A,dp,i,j-1));
+        }
+        return dp[i][j];
+
+        
+    }
+    public int minPathSum(int[][] A) {
+       int n = A[0].length;
+        int m = A.length;
+        int [][] dp = new int [m][n];
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+          dp[i][j]=-1;
+        }
+        }
+        return findMinPath(A,dp,m-1,n-1);
+    }
+}
