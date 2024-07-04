@@ -1,0 +1,22 @@
+public class Solution {
+    public int picsides(int[] A, int B) {
+     int n = A.length;
+     
+     int j=B-1;
+     int sum=0;
+     for(int i=0;i<B;i++){
+         sum+=A[i];
+     }
+     int max = sum;
+     for(int i=n-1;i>=n-B;i--){
+         sum=sum-A[j];
+         j--;
+         sum=sum+A[i];
+         if(sum>max){
+             max=sum;
+         }
+     }
+     return max;
+
+    }
+}
