@@ -1,0 +1,21 @@
+public class Solution {
+    public int equilibrium(int[] A) {
+       int n=A.length;
+       int total=0;
+       for(int i=0;i<n;i++){
+           total+=A[i];
+       }
+       int left_sum=0;
+       for(int i=0;i<n;i++){
+           total-=A[i];
+           
+            //This condition would be after the checking because you have to confirm bfor 
+            //adding into left index that it is not equilibrium index
+           if(left_sum==total){
+               return i;
+           }
+            left_sum=left_sum+A[i];
+       }
+       return -1;
+    }
+}
