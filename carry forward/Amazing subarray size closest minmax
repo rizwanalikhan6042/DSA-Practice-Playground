@@ -1,0 +1,32 @@
+public class Solution {
+    public int Amazingsubarraysize(int[] A) {
+    int arrlen = A.length;
+    int minIndex = arrlen;
+    int maxIndex = 0;
+    int len = 0;
+    boolean flag1 = false,flag2=false ;
+    int minlen = Integer.MAX_VALUE;
+    int min =Integer.MAX_VALUE, max =Integer.MIN_VALUE;
+    for(int i=0;i<arrlen;i++){
+        min = Math.min(A[i],min);
+        max = Math.max(A[i],max);
+    }
+    for(int i=0;i<arrlen;i++){
+        if(A[i]==min){
+            minIndex = i;
+            flag1=true;
+        }
+        if(A[i]==max){
+            maxIndex = i;
+            flag2 = true;
+        }
+        if(flag1==true&&flag2==true){
+            len = Math.max(maxIndex,minIndex)-Math.min(maxIndex,minIndex)+1;
+            minlen = Math.min(minlen,len);
+        }
+       
+        
+    }
+     return minlen;
+    }
+}
