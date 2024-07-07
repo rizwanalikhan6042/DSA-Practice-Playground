@@ -1,5 +1,5 @@
 public class Solution {
-    public int[][] generateMatrix(int A) {
+    public int[][] SpiralOrder(int A) {
        int ans[] []= new int [A][A];
        int row = 0 , col = 0;
        int x = 1;
