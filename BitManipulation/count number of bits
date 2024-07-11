@@ -1,0 +1,40 @@
+public class solveit {
+   long mod =1000000007;
+
+int cntBit(int n)
+
+{
+
+int cnt=0;
+
+while((1<<cnt)<=n)
+
+{
+
+cnt++;
+
+}
+
+return cnt-1;
+
+}
+    public int noOf Bitse(int A) {
+        if(A<=2)
+
+return A;
+
+int cnt=cntBit(A);
+
+long ans=cnt*1L*(int)Math.pow(2,cnt-1);
+
+ans%=mod;
+
+ans+=solve(A-(int)Math.pow(2,cnt));
+
+ans+=(A-(int)Math.pow(2,cnt)+1);
+
+ans%=mod;
+
+return (int)ans;
+    }
+}
