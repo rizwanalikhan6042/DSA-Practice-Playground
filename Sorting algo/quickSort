@@ -4,7 +4,7 @@ public class   QuicklySort {
         int i=low+1;
         int j=high;
         while(i<=j){
-         while(i<=high&&A[i]<=pivot){  ////better learn by heart these condtion
+         while(i<=high&&A[i]<=pivot){  ////better l by h these condtion
            i++;
          }
          while(A[j]>pivot){
