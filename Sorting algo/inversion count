@@ -1,0 +1,55 @@
+public class Solution {
+     public int merge(int A[],int s,int m,int e){
+         int count=0;
+       int n1=m-s+1;
+       int n2=e-m;
+       int temp1[] = new int[n1];
+       int temp2[] = new int[n2];
+       for(int i=0;i<n1;i++){
+           temp1[i]=A[s+i];
+       }
+       for(int j=0;j<n2;j++){
+           temp2[j]=A[m+1+j];
+       }
+       int k = s , i=0,j=0;
+       while(i<n1&&j<n2){
+           if(temp1[i]<=temp2[j]){
+               A[k]=temp1[i];
+               i++;
+           }else{
+               A[k]=temp2[j];
+               j++;
+               count=(count+(n1-i))%1000000007;
+           }
+           k++;
+       }
+       while(i<n1){
+        A[k]=temp1[i];
+        i++;
+        k++;
+       }
+        while(j<n2){
+        A[k]=temp2[j];
+        j++;
+        k++;
+       }
+     return count;
+   }
+
+    public int mergesort(int A[] , int s , int e){
+        if(s==e){
+            return 0;
+        }
+        int m = s+(e-s)/2;
+        int leftCount= mergesort(A,s,m);
+       int rightCount= mergesort(A,m+1,e);
+        int mergeCount = merge(A,s,m,e);
+        return (leftCount + rightCount + mergeCount) % 1000000007;
+    }
+    public int solveQuestions(int[] A) {
+        int count = 0 ;
+        int n = A.length;
+       int answer = mergesort(A,0,n-1);
+       return answer;
+    }
+}
