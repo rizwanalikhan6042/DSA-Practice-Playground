@@ -1,0 +1,27 @@
+public class Solution {
+    public int solve(int[] A, int B) {
+       int n = A.length;
+        Arrays.sort(A);
+        int i=0,j=1,ans=0;
+
+        while(j<n){
+            if(i==j){
+                j++;
+                continue;
+            }
+            int x=A[i],y=A[j];
+            if(y-x==B){
+             ans++;
+             while(i<n&&A[i]==x)i++;
+             while(j<n&&A[j]==x)j++;
+             
+            }
+            else if(y-x>B){
+                i++;
+            } else{
+                j++;
+            }
+        }
+        return ans;
+    }
+}
