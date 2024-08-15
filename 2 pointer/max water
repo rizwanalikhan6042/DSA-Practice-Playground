@@ -1,0 +1,13 @@
+ int n = A.length;
+        int i=0,j=n-1;
+        int containedWater=0,ans=0;
+        while(i<j){
+            containedWater=Math.min(A[i],A[j])*(j-i); //j-i is the width
+            ans=Math.max(ans,containedWater);
+            if(A[i]<=A[j]){
+                i++;
+            }else{
+                j--;
+            }
+        }
+        return ans;
