@@ -1,0 +1,43 @@
+public class UniqueTriplets {
+    public int[][] findUniqueTriplets(int[] nums) {
+        Arrays.sort(nums);
+        ArrayList<ArrayList<Integer>> tripletList = new ArrayList<>();
+        
+        for (int x = 0; x < nums.length - 2; x++) {
+            if (x > 0 && nums[x] == nums[x - 1]) {
+                continue;
+            }
+            int y = x + 1, z = nums.length - 1;
+            while (y < z) {
+                int currentSum = nums[x] + nums[y] + nums[z];
+                if (currentSum < 0) {
+                    y++;
+                } else if (currentSum > 0) {
+                    z--;
+                } else {
+                    ArrayList<Integer> triplet = new ArrayList<>();
+                    triplet.add(nums[x]);
+                    triplet.add(nums[y]);
+                    triplet.add(nums[z]);
+                    tripletList.add(triplet);
+
+                    while (y < z && nums[y] == nums[y + 1]) y++;
+                    while (y < z && nums[z] == nums[z - 1]) z--;
+
+                    y++;
+                    z--;
+                }
+            }
+        }
+
+        // Convert ArrayList<ArrayList<Integer>> to int[][]
+        int[][] tripletArray = new int[tripletList.size()][3];
+        for (int x = 0; x < tripletList.size(); x++) {
+            for (int y = 0; y < 3; y++) {
+                tripletArray[x][y] = tripletList.get(x).get(y);
+            }
+        }
+        
+        return tripletArray;
+    }
+}
